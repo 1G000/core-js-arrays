@@ -137,8 +137,12 @@ function getStringsLength(arr) {
  *   getAverage[ 1, 10, 100, 1000 ]  => 277,75
  *   getAverage[ 2, 3, 3 ]  => 2,67
  */
-function getAverage(/* arr */) {
-  throw new Error('Not implemented');
+function getAverage(arr) {
+  if (!arr.length) {
+    return 0;
+  }
+  const average = arr.reduce((acc, el) => acc + el, 0) / arr.length;
+  return average === Math.trunc(average) ? +average : +average.toFixed(2);
 }
 
 /**
@@ -260,8 +264,8 @@ function toStringList(arr) {
  *   distinct([ 1, 1, 2, 2, 3, 3, 4, 4]) => [ 1, 2, 3, 4]
  *   distinct([]) => []
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return [...new Set(arr)];
 }
 
 /**
@@ -292,8 +296,8 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  return nestedArray.flat(4);
 }
 
 /**
@@ -326,8 +330,9 @@ function selectMany(arr, childrenSelector) {
  *   calculateBalance([ [ 10, 8 ], [ 1, 5 ] ])  => (10 - 8) + (1 - 5) = 2 + -4 = -2
  *   calculateBalance([]) => 0
  */
-function calculateBalance(/* arr */) {
-  throw new Error('Not implemented');
+function calculateBalance(arr) {
+  const arr1 = arr.map((el) => el.reduce((acc, e) => acc - e));
+  return arr1.reduce((acc, el) => acc + el);
 }
 
 /**
