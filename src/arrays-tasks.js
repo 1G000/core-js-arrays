@@ -349,8 +349,13 @@ function calculateBalance(arr) {
  *    createChunks(['a', 'b', 'c', 'd', 'e'], 2) => [['a', 'b'], ['c', 'd'], ['e']]
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
-function createChunks(/* arr, chunkSize */) {
-  throw new Error('Not implemented');
+function createChunks(arr, chunkSize) {
+  let result = [];
+  const resultLength = Math.ceil(arr.length / chunkSize);
+  result = Array.from({ length: resultLength }, (_, i) =>
+    arr.slice(i * chunkSize, i * chunkSize + chunkSize)
+  );
+  return result;
 }
 
 /**
@@ -468,8 +473,12 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  let result = [];
+  result = arr.map(
+    (el) => `#${el.toString(16).padStart(6, '0').toUpperCase()}`
+  );
+  return result;
 }
 
 /**
@@ -554,8 +563,19 @@ function propagateItemsByPositionIndex(arr) {
  *    shiftArray(['a', 'b', 'c', 'd'], -1) => ['b', 'c', 'd', 'a']
  *    shiftArray([10, 20, 30, 40, 50], -3) => [40, 50, 10, 20, 30]
  */
-function shiftArray(/* arr, n */) {
-  throw new Error('Not implemented');
+function shiftArray(arr, n) {
+  let leftSide;
+  let rightSide;
+  if (n < 0) {
+    leftSide = arr.slice(n * -1, arr.length);
+    rightSide = arr.slice(0, n * -1);
+  }
+  if (n > 0) {
+    rightSide = arr.slice(0, n + 1);
+    leftSide = arr.slice(n + 1, arr.length);
+  }
+  const result = [...leftSide, ...rightSide];
+  return result;
 }
 
 /**
